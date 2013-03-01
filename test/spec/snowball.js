@@ -258,6 +258,23 @@
 			assert.equal(loans[3].nickname, '3');
 		});
 
+		test('strategy: minimumPayment', function () {
+			var loans = [];
+			var snowball = new Snowball();
+
+			loans.push(new Loan('1', 800, 10, 35));
+			loans.push(new Loan('2', 500, 8, 25));
+			loans.push(new Loan('3', 900, 3, 15));
+			loans.push(new Loan('4', 300, 12, 25));
+
+			snowball.strategies['minimumPaymentOnly'](loans);
+
+			assert.equal(loans[0].nickname, '3');
+			assert.equal(loans[1].nickname, '4');
+			assert.equal(loans[2].nickname, '2');
+			assert.equal(loans[3].nickname, '1');
+		});
+
 		test('strategy: minimumPaymentOnly', function () {
 			var loans = [];
 			var snowball = new Snowball();
@@ -273,6 +290,8 @@
 			assert.equal(loans[1].nickname, '4');
 			assert.equal(loans[2].nickname, '2');
 			assert.equal(loans[3].nickname, '1');
+
+			assert(snowball.strategies['minimumPaymentOnly'].noExtra);
 		});
 	});
 })(Snowball, Loan);

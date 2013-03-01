@@ -216,7 +216,7 @@ Snowball = function() {
 				return ratio;
 			});
 		},
-		minimumPaymentOnly: function(loans) {
+		minimumPayment: function(loans) {
 			// Sort the loans by the minimum balance, ascending
 			return loans.sort(function(a, b) {
 				var ratio = a.minPayment - b.minPayment;
@@ -232,7 +232,8 @@ Snowball = function() {
 	};
 
 	// No extra payments on the minimum payment strategy
-	this.strategies.minimumPayment.noExtra = true;
+	this.strategies.minimumPaymentOnly = this.strategies.minimumPayment;
+	this.strategies.minimumPaymentOnly.noExtra = true;
 };
 
 /**
