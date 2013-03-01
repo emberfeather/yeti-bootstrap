@@ -216,7 +216,7 @@ Snowball = function() {
 				return ratio;
 			});
 		},
-		minimumPayment: function(loans) {
+		minimumPaymentOnly: function(loans) {
 			// Sort the loans by the minimum balance, ascending
 			return loans.sort(function(a, b) {
 				var ratio = a.minPayment - b.minPayment;
