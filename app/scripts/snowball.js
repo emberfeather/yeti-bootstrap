@@ -1,13 +1,27 @@
 Loan = function(nickname, principal, rate, minPayment) {
+	var periods = 12;
+	var periodRate = rate / periods;
+
 	this.nickname = nickname;
 	this.principal = principal;
 	this.rate = rate;
 	this.minPayment = minPayment;
 	this.balance = principal;
 	this.interest = 0;
-	this.periods = 12;
 	this.schedule = [];
-	this.periodRate = (rate / this.periods);
+
+	this.__defineGetter__('periods', function() {
+		return periods;
+	});
+
+	this.__defineGetter__('periodRate', function() {
+		return periodRate;
+	});
+
+	this.__defineSetter__('periods', function(val) {
+		periods = val;
+		periodRate = this.rate / periods;
+	});
 };
 
 Loan.prototype.addPayment = function(payment, isExtra) {
