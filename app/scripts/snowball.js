@@ -83,7 +83,7 @@ Loan.prototype.addPayment = function(payment, isExtra) {
 		payInterest = toMoney(this.balance * (this.periodRate / 100));
 		payPrincipal = toMoney(payAmount - payInterest);
 
-		this.balance = toMoney(this.balance - payPrincipal);
+		this._balance = toMoney(this.balance - payPrincipal);
 		this.interest = toMoney(this.interest + payInterest);
 
 		this.schedule.push({
@@ -95,7 +95,7 @@ Loan.prototype.addPayment = function(payment, isExtra) {
 	} else {
 		payAmount = Math.min(this.balance, payment);
 		payPrincipal = toMoney(payAmount);
-		this.balance = toMoney(this.balance - payPrincipal);
+		this._balance = toMoney(this.balance - payPrincipal);
 
 		line = this.schedule[this.schedule.length - 1];
 		line.amount = toMoney(line.amount + payAmount);

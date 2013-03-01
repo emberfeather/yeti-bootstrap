@@ -79,5 +79,13 @@
 
 			assert.equal(loan.rate, 0, 'negative');
 		});
+
+		test('amortization: simple payment', function () {
+			var loan = new Loan('nickname', 1000, 10, 25);
+
+			loan.addPayment(100);
+
+			assert.closeTo(loan.balance, 908.33, .001);
+		});
 	});
 })();
