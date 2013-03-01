@@ -1,6 +1,6 @@
 'use strict';
 
-(function () {
+(function (Snowball, Loan) {
 	suite('loan', function () {
 		test('constructor', function () {
 			var loan = new Loan('nickname', 1000, 10, 25);
@@ -156,4 +156,4 @@
 			assert.equal(snowball.periods, 1, 'negative');
 		});
 	});
-})();
+})(Snowball, Loan);
