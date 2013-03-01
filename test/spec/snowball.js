@@ -108,5 +108,23 @@
 			assert.closeTo(loan.balance, 0, .001);
 			assert.closeTo(loan.interest, 0.83, .001);
 		});
+
+		test('payment: extra', function () {
+			var loan = new Loan('nickname', 1000, 10, 25);
+
+			assert.closeTo(loan.addPayment(100), 0, .001, 'extra');
+			assert.closeTo(loan.addPayment(100, true), 0, .001, 'extra');
+
+			assert.closeTo(loan.balance, 808.33, .001);
+			assert.closeTo(loan.interest, 8.33, .001);
+		});
+
+		test('payment: extra without previous payment', function () {
+			var loan = new Loan('nickname', 1000, 10, 25);
+
+			assert.throw(function() {
+				loan.addPayment(100, true);
+			}, Error, 'normal payment first');
+		});
 	});
 })();

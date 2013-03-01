@@ -93,6 +93,10 @@ Loan.prototype.addPayment = function(payment, isExtra) {
 			balance: toMoney(this.balance)
 		});
 	} else {
+		if(!this.schedule.length) {
+			throw new Error('Cannot add extra payments without a normal payment first');
+		}
+
 		payAmount = Math.min(this.balance, payment);
 		payPrincipal = toMoney(payAmount);
 		this._balance = toMoney(this.balance - payPrincipal);
