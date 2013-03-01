@@ -112,7 +112,23 @@ Loan.prototype.addPayment = function(payment, isExtra) {
 
 Snowball = function() {
 	this.currency = '$';
-	this.periods = 12;
+	var periods = 12;
+
+	/**
+	 * Getters
+	 */
+
+	this.__defineGetter__('periods', function() {
+		return periods;
+	});
+
+	/**
+	 * Setters
+	 */
+
+	this.__defineSetter__('periods', function(val) {
+		periods = Math.max(parseInt(val), 1);
+	});
 
 	/**
 	 * Default Strategies

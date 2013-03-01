@@ -135,5 +135,17 @@
 			assert.equal(snowball.currency, '$');
 			assert.equal(snowball.periods, 12);
 		});
+
+		test('setter: periods', function () {
+			var snowball = new Snowball();
+
+			snowball.periods = 10;
+
+			assert.equal(snowball.periods, 10, 'new');
+
+			snowball.periods = -24;
+
+			assert.equal(snowball.periods, 1, 'negative');
+		});
 	});
 })();
