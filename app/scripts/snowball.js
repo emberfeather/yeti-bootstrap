@@ -228,11 +228,13 @@ Snowball = function() {
 				
 				return ratio;
 			});
+		},
+		minimumPaymentOnly: function(loans) {
+			return loans;
 		}
 	};
 
 	// No extra payments on the minimum payment strategy
-	this.strategies.minimumPaymentOnly = this.strategies.minimumPayment;
 	this.strategies.minimumPaymentOnly.noExtra = true;
 };
 
@@ -246,6 +248,7 @@ Snowball.prototype.schedule = function(loans, payment) {
 	$.each(this.strategies, function(name, strategy) {
 		var hasBalance = true;
 		var isInterestOnly = false;
+		var s;
 		
 		// Use the strategy to sort the loans
 		strategy(loans);
@@ -253,6 +256,7 @@ Snowball.prototype.schedule = function(loans, payment) {
 		schedules[name] = {
 			length: 0,
 			interest: 0,
+			principal: 0,
 			loans: [],
 			extra: 0
 		};
@@ -316,9 +320,10 @@ Snowball.prototype.schedule = function(loans, payment) {
 		$.each(s.loans, function(i, loan) {
 			s.length = Math.max(s.length, loan.schedule.length);
 			s.interest += loan.interest;
+			s.principal += loan.principal;
 		});
 
-		console.log(name, schedules[name], schedules[name].loans[0].schedule.length, schedules[name].loans[0].schedule[schedules[name].loans[0].schedule.length-1]);
+		// console.log(name, schedules[name], schedules[name].loans[0].schedule.length, schedules[name].loans[0].schedule[schedules[name].loans[0].schedule.length-1]);
 	});
 
 	return schedules;
