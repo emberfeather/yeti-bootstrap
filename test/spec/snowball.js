@@ -50,6 +50,10 @@
 
 			assert.equal(loan.periods, 10, 'new');
 			assert.equal(loan.periodRate, 1, 'new rate');
+
+			loan.periods = -24;
+
+			assert.equal(loan.periods, 1, 'negative');
 		});
 
 		test('setter: principal', function () {

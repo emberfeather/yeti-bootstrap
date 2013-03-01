@@ -59,7 +59,7 @@ Loan = function(nickname, principal, rate, minPayment) {
 	});
 
 	this.__defineSetter__('periods', function(val) {
-		periods = val;
+		periods = Math.max(parseInt(val), 1);
 		periodRate = this.rate / periods;
 	});
 
