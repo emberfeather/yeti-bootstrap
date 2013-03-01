@@ -11,7 +11,7 @@ require.config({
     }
 });
 
-require(['app', 'jquery', 'bootstrap', 'snowball'], function (app, $) {
+require(['jquery', 'bootstrap', 'snowball'], function ($) {
     'use strict';
 
     var snow = new Snowball();
