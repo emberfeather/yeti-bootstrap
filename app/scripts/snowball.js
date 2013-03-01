@@ -112,8 +112,7 @@ Loan.prototype.addPayment = function(payment, isExtra) {
 
 Snowball = function() {
 	this.currency = '$';
-	this.ppy = 12;
-	this.interestOnlyThreshold = 1;
+	this.periods = 12;
 
 	/**
 	 * Default Strategies
@@ -218,8 +217,7 @@ Snowball.prototype.schedule = function(loans, payment) {
 
 	$.each(this.strategies, function(name, strategy) {
 		var hasBalance = true;
-		var isInterestOnly;
-		var interestOnlyCount = 0;
+		var isInterestOnly = false;
 		
 		// Use the strategy to sort the loans
 		strategy(loans);
@@ -238,7 +236,7 @@ Snowball.prototype.schedule = function(loans, payment) {
 			s.loans.push(new Loan(loan.nickname, loan.principal, loan.rate, loan.minPayment));
 		});
 
-		while( hasBalance && interestOnlyCount < snow.interestOnlyThreshold ) {
+		while( hasBalance && !isInterestOnly ) {
 			var extra = payment;
 
 			// Handle minimum payments
@@ -284,11 +282,6 @@ Snowball.prototype.schedule = function(loans, payment) {
 					}
 				}
 			});
-			
-			// If there are only interest-only loans increment the threshold
-			if(isInterestOnly && s.extra == 0) {
-				interestOnlyCount++;
-			}
 		}
 
 		// Calculate schedule totals

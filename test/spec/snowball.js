@@ -127,4 +127,13 @@
 			}, Error, 'normal payment first');
 		});
 	});
+
+	suite('snowball', function () {
+		test('constructor', function () {
+			var snowball = new Snowball();
+
+			assert.equal(snowball.currency, '$');
+			assert.equal(snowball.periods, 12);
+		});
+	});
 })();
