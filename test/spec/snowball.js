@@ -35,5 +35,17 @@
 
 			assert.equal(loan.principal, 0, 'negative');
 		});
+
+		test('rate setter', function () {
+			var loan = new Loan('nickname', 1000, 10, 25);
+
+			loan.rate = 14;
+
+			assert.equal(loan.rate, 14, 'new');
+
+			loan.rate = -10;
+
+			assert.equal(loan.rate, 0, 'negative');
+		});
 	});
 })();

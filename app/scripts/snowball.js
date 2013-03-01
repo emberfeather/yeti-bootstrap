@@ -2,13 +2,17 @@ Loan = function(nickname, principal, rate, minPayment) {
 	var periods = 12;
 	var periodRate = rate / periods;
 	var principal = principal;
+	var rate = rate;
 
 	this.nickname = nickname;
-	this.rate = rate;
 	this.minPayment = minPayment;
 	this.balance = principal;
 	this.interest = 0;
 	this.schedule = [];
+
+	/**
+	 * Getters
+	 */
 
 	this.__defineGetter__('periods', function() {
 		return periods;
@@ -22,6 +26,14 @@ Loan = function(nickname, principal, rate, minPayment) {
 		return principal;
 	});
 
+	this.__defineGetter__('rate', function() {
+		return rate;
+	});
+
+	/**
+	 * Setters
+	 */
+	
 	this.__defineSetter__('periods', function(val) {
 		periods = val;
 		periodRate = this.rate / periods;
@@ -29,6 +41,10 @@ Loan = function(nickname, principal, rate, minPayment) {
 
 	this.__defineSetter__('principal', function(val) {
 		principal = Math.max(parseFloat(val), 0);
+	});
+
+	this.__defineSetter__('rate', function(val) {
+		rate = Math.max(parseFloat(val), 0);
 	});
 };
 
