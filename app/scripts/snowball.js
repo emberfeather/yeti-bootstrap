@@ -26,6 +26,10 @@ Loan = function(nickname, principal, rate, minPayment) {
 		periods = val;
 		periodRate = this.rate / periods;
 	});
+
+	this.__defineSetter__('principal', function(val) {
+		principal = Math.max(parseFloat(val), 0);
+	});
 };
 
 Loan.prototype.addPayment = function(payment, isExtra) {

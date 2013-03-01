@@ -18,12 +18,22 @@
 		test('periods setter', function () {
 			var loan = new Loan('nickname', 1000, 10, 25);
 
-			assert.equal(loan.periods, 12, 'original periods');
-
 			loan.periods = 10;
 
-			assert.equal(loan.periods, 10, 'new periods');
-			assert.equal(loan.periodRate, 1, 'new period rate');
+			assert.equal(loan.periods, 10, 'new');
+			assert.equal(loan.periodRate, 1, 'new rate');
+		});
+
+		test('principal setter', function () {
+			var loan = new Loan('nickname', 1000, 10, 25);
+
+			loan.principal = 1100;
+
+			assert.equal(loan.principal, 1100, 'new');
+
+			loan.principal = -100;
+
+			assert.equal(loan.principal, 0, 'negative');
 		});
 	});
 })();
