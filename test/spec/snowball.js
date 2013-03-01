@@ -136,6 +136,14 @@
 			assert.equal(snowball.periods, 12);
 		});
 
+		test('setter: currency', function () {
+			var snowball = new Snowball();
+
+			snowball.currency = '£';
+
+			assert.equal(snowball.currency, '£', 'new');
+		});
+
 		test('setter: periods', function () {
 			var snowball = new Snowball();
 
