@@ -23,6 +23,14 @@
 			assert.equal(loan.balance, 900, 'new');
 		});
 
+		test('setter: _interest', function () {
+			var loan = new Loan('nickname', 1000, 10, 25);
+
+			loan._interest = 25;
+
+			assert.equal(loan.interest, 25, 'new');
+		});
+
 		test('setter: minPayment', function () {
 			var loan = new Loan('nickname', 1000, 10, 25);
 
