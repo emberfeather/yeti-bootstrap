@@ -84,7 +84,7 @@ Loan.prototype.addPayment = function(payment, isExtra) {
 		payPrincipal = toMoney(payAmount - payInterest);
 
 		this._balance = toMoney(this.balance - payPrincipal);
-		this.interest = toMoney(this.interest + payInterest);
+		this._interest = toMoney(this.interest + payInterest);
 
 		this.schedule.push({
 			amount: toMoney(payAmount),

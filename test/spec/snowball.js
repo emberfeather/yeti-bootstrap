@@ -86,6 +86,7 @@
 			assert.closeTo(loan.addPayment(100), 0, .001, 'extra');
 
 			assert.closeTo(loan.balance, 908.33, .001);
+			assert.closeTo(loan.interest, 8.33, .001);
 		});
 
 		test('payment: multiple', function () {
@@ -96,6 +97,7 @@
 			assert.closeTo(loan.addPayment(100), 0, .001, 'extra');
 
 			assert.closeTo(loan.balance, 722.70, .001);
+			assert.closeTo(loan.interest, 22.70, .001);
 		});
 
 		test('payment: overpayment', function () {
@@ -104,6 +106,7 @@
 			assert.closeTo(loan.addPayment(125), 24.17, .001, 'extra');
 
 			assert.closeTo(loan.balance, 0, .001);
+			assert.closeTo(loan.interest, 0.83, .001);
 		});
 	});
 })();
