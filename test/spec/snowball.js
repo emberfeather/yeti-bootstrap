@@ -2,7 +2,7 @@
 
 (function () {
 	suite('loan', function () {
-		test('default constructor', function () {
+		test('constructor', function () {
 			var loan = new Loan('nickname', 1000, 10, 25);
 
 			assert.equal(loan.nickname, 'nickname');
@@ -15,7 +15,7 @@
 			assert.equal(loan.periodRate, 10 / 12);
 		});
 
-		test('periods setter', function () {
+		test('setter: periods', function () {
 			var loan = new Loan('nickname', 1000, 10, 25);
 
 			loan.periods = 10;
@@ -24,7 +24,7 @@
 			assert.equal(loan.periodRate, 1, 'new rate');
 		});
 
-		test('principal setter', function () {
+		test('setter: principal', function () {
 			var loan = new Loan('nickname', 1000, 10, 25);
 
 			loan.principal = 1100;
@@ -36,7 +36,7 @@
 			assert.equal(loan.principal, 0, 'negative');
 		});
 
-		test('rate setter', function () {
+		test('setter: rate', function () {
 			var loan = new Loan('nickname', 1000, 10, 25);
 
 			loan.rate = 14;
