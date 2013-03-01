@@ -155,5 +155,124 @@
 
 			assert.equal(snowball.periods, 1, 'negative');
 		});
+
+		test('strategy: balanceHighLow', function () {
+			var loans = [];
+			var snowball = new Snowball();
+
+			loans.push(new Loan('1', 800, 10, 25));
+			loans.push(new Loan('2', 500, 8, 25));
+			loans.push(new Loan('3', 900, 3, 25));
+			loans.push(new Loan('4', 600, 12, 25));
+
+			snowball.strategies['balanceHighLow'](loans);
+
+			assert.equal(loans[0].nickname, '3');
+			assert.equal(loans[1].nickname, '1');
+			assert.equal(loans[2].nickname, '4');
+			assert.equal(loans[3].nickname, '2');
+		});
+
+		test('strategy: balanceLowHigh', function () {
+			var loans = [];
+			var snowball = new Snowball();
+
+			loans.push(new Loan('1', 800, 10, 25));
+			loans.push(new Loan('2', 500, 8, 25));
+			loans.push(new Loan('3', 900, 3, 25));
+			loans.push(new Loan('4', 600, 12, 25));
+
+			snowball.strategies['balanceLowHigh'](loans);
+
+			assert.equal(loans[0].nickname, '2');
+			assert.equal(loans[1].nickname, '4');
+			assert.equal(loans[2].nickname, '1');
+			assert.equal(loans[3].nickname, '3');
+		});
+
+		test('strategy: interestHighLow', function () {
+			var loans = [];
+			var snowball = new Snowball();
+
+			loans.push(new Loan('1', 800, 10, 25));
+			loans.push(new Loan('2', 500, 8, 25));
+			loans.push(new Loan('3', 900, 3, 25));
+			loans.push(new Loan('4', 600, 12, 25));
+
+			snowball.strategies['interestHighLow'](loans);
+
+			assert.equal(loans[0].nickname, '4');
+			assert.equal(loans[1].nickname, '1');
+			assert.equal(loans[2].nickname, '2');
+			assert.equal(loans[3].nickname, '3');
+		});
+
+		test('strategy: interestLowHigh', function () {
+			var loans = [];
+			var snowball = new Snowball();
+
+			loans.push(new Loan('1', 800, 10, 25));
+			loans.push(new Loan('2', 500, 8, 25));
+			loans.push(new Loan('3', 900, 3, 25));
+			loans.push(new Loan('4', 600, 12, 25));
+
+			snowball.strategies['interestLowHigh'](loans);
+
+			assert.equal(loans[0].nickname, '3');
+			assert.equal(loans[1].nickname, '2');
+			assert.equal(loans[2].nickname, '1');
+			assert.equal(loans[3].nickname, '4');
+		});
+
+		test('strategy: ratioBalanceMinimumPayment', function () {
+			var loans = [];
+			var snowball = new Snowball();
+
+			loans.push(new Loan('1', 800, 10, 25));	// 32
+			loans.push(new Loan('2', 500, 8, 25));	// 20
+			loans.push(new Loan('3', 900, 3, 25));	// 36
+			loans.push(new Loan('4', 600, 12, 25));	// 24
+
+			snowball.strategies['ratioBalanceMinimumPayment'](loans);
+
+			assert.equal(loans[0].nickname, '2');
+			assert.equal(loans[1].nickname, '4');
+			assert.equal(loans[2].nickname, '1');
+			assert.equal(loans[3].nickname, '3');
+		});
+
+		test('strategy: ratioBalanceRate', function () {
+			var loans = [];
+			var snowball = new Snowball();
+
+			loans.push(new Loan('1', 800, 10, 25));	// 80
+			loans.push(new Loan('2', 500, 8, 25));	// 62.5
+			loans.push(new Loan('3', 900, 3, 25));	// 300
+			loans.push(new Loan('4', 600, 12, 25));	// 50
+
+			snowball.strategies['ratioBalanceRate'](loans);
+
+			assert.equal(loans[0].nickname, '4');
+			assert.equal(loans[1].nickname, '2');
+			assert.equal(loans[2].nickname, '1');
+			assert.equal(loans[3].nickname, '3');
+		});
+
+		test('strategy: minimumPayment', function () {
+			var loans = [];
+			var snowball = new Snowball();
+
+			loans.push(new Loan('1', 800, 10, 35));
+			loans.push(new Loan('2', 500, 8, 25));
+			loans.push(new Loan('3', 900, 3, 15));
+			loans.push(new Loan('4', 300, 12, 25));
+
+			snowball.strategies['minimumPayment'](loans);
+
+			assert.equal(loans[0].nickname, '3');
+			assert.equal(loans[1].nickname, '4');
+			assert.equal(loans[2].nickname, '2');
+			assert.equal(loans[3].nickname, '1');
+		});
 	});
 })(Snowball, Loan);

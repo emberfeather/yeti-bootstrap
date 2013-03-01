@@ -112,7 +112,7 @@ Loan.prototype.addPayment = function(payment, isExtra) {
 
 Snowball = function() {
 	var periods = 12;
-	
+
 	this.currency = '$';
 
 	/**
@@ -217,7 +217,17 @@ Snowball = function() {
 			});
 		},
 		minimumPayment: function(loans) {
-			return loans;
+			// Sort the loans by the minimum balance, ascending
+			return loans.sort(function(a, b) {
+				var ratio = a.minPayment - b.minPayment;
+				
+				// If they have the same minPayment, want the one with the lowest balance first
+				if(ratio === 0) {
+					return a.principal - b.principal;
+				}
+				
+				return ratio;
+			});
 		}
 	};
 
