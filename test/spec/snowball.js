@@ -80,12 +80,22 @@
 			assert.equal(loan.rate, 0, 'negative');
 		});
 
-		test('amortization: simple payment', function () {
+		test('payment: simple', function () {
 			var loan = new Loan('nickname', 1000, 10, 25);
 
-			loan.addPayment(100);
+			assert.closeTo(loan.addPayment(100), 0, .001, 'extra');
 
 			assert.closeTo(loan.balance, 908.33, .001);
+		});
+
+		test('payment: multiple', function () {
+			var loan = new Loan('nickname', 1000, 10, 25);
+
+			assert.closeTo(loan.addPayment(100), 0, .001, 'extra');
+			assert.closeTo(loan.addPayment(100), 0, .001, 'extra');
+			assert.closeTo(loan.addPayment(100), 0, .001, 'extra');
+
+			assert.closeTo(loan.balance, 722.70, .001);
 		});
 	});
 })();
