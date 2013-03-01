@@ -97,5 +97,13 @@
 
 			assert.closeTo(loan.balance, 722.70, .001);
 		});
+
+		test('payment: overpayment', function () {
+			var loan = new Loan('nickname', 100, 10, 25);
+
+			assert.closeTo(loan.addPayment(125), 24.17, .001, 'extra');
+
+			assert.closeTo(loan.balance, 0, .001);
+		});
 	});
 })();

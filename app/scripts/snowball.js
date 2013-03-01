@@ -79,8 +79,8 @@ Loan.prototype.addPayment = function(payment, isExtra) {
 	var line;
 	
 	if(!isExtra) {
-		payAmount = Math.min(this.balance, payment);
 		payInterest = toMoney(this.balance * (this.periodRate / 100));
+		payAmount = Math.min(this.balance + payInterest, payment);
 		payPrincipal = toMoney(payAmount - payInterest);
 
 		this._balance = toMoney(this.balance - payPrincipal);
