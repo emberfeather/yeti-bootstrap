@@ -5,8 +5,9 @@ Loan = function(nickname, principal, rate, minPayment) {
 	this.minPayment = minPayment;
 	this.balance = principal;
 	this.interest = 0;
+	this.periods = 12;
 	this.schedule = [];
-	this.periodRate = (rate / 12);
+	this.periodRate = (rate / this.periods);
 };
 
 Loan.prototype.addPayment = function(payment, isExtra) {
