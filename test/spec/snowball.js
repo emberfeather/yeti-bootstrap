@@ -15,6 +15,14 @@
 			assert.equal(loan.periodRate, 10 / 12);
 		});
 
+		test('setter: _balance', function () {
+			var loan = new Loan('nickname', 1000, 10, 25);
+
+			loan._balance = 900;
+
+			assert.equal(loan.balance, 900, 'new');
+		});
+
 		test('setter: periods', function () {
 			var loan = new Loan('nickname', 1000, 10, 25);
 
