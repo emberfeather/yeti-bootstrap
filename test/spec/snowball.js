@@ -290,10 +290,24 @@
 
 			schedule = snowball.schedule(loans, 150)['minimumPayment'];
 
-			console.log(schedule);
-
 			assert.equal(schedule.principal, 500);
 			assert.equal(schedule.interest, 9.34);
+			assert.equal(schedule.length, 4);
+		});
+
+		test('schedule: multiple loans', function () {
+			var loans = [];
+			var schedule;
+			var snowball = new Snowball();
+
+			loans.push(new Loan('1', 500, 10, 30));
+			loans.push(new Loan('2', 500, 10, 40));
+
+			schedule = snowball.schedule(loans, 150)['minimumPayment'];
+
+			assert.equal(schedule.principal, 1000);
+			assert.equal(schedule.interest, 33.20);
+			assert.equal(schedule.length, 7);
 		});
 	});
 })(Snowball, Loan);
