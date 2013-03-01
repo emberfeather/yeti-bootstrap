@@ -1,9 +1,9 @@
 Loan = function(nickname, principal, rate, minPayment) {
 	var periods = 12;
 	var periodRate = rate / periods;
+	var principal = principal;
 
 	this.nickname = nickname;
-	this.principal = principal;
 	this.rate = rate;
 	this.minPayment = minPayment;
 	this.balance = principal;
@@ -16,6 +16,10 @@ Loan = function(nickname, principal, rate, minPayment) {
 
 	this.__defineGetter__('periodRate', function() {
 		return periodRate;
+	});
+
+	this.__defineGetter__('principal', function() {
+		return principal;
 	});
 
 	this.__defineSetter__('periods', function(val) {
