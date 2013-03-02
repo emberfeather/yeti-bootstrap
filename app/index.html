@@ -38,29 +38,32 @@
                 </div>
             </div>
 
-            <div class="row-fluid">
-                <form>
-                    <div class="span3 well well-small" ng-repeat="loan in loans">
-                        <button class="close pull-right">&times;</button>
+            <div class="row-fluid" ng-repeat="loan in loans">
+                <div class="span12">
+                    <button class="close pull-right">&times;</button>
 
-                        <input type="text" class="span11" placeholder="Debt Nickname" title="Debt Nickname" ng-model="loan.nickname">
+                    <input type="text" class="span3" placeholder="Debt Nickname" title="Debt Nickname" ng-model="loan.nickname">
 
-                        <div class="input-prepend">
-                            <span class="add-on">$</span>
-                            <input class="span12" type="number" placeholder="Debt Amount" title="Debt Amount" ng-model="loan.principal">
-                        </div>
-                        
-                        <div class="input-append">
-                            <input class="span12" type="number" placeholder="Interest Rate" title="Interest Rate" ng-model="loan.rate">
-                            <span class="add-on">%</span>
-                        </div>
-
-                        <div class="input-prepend">
-                            <span class="add-on">$</span>
-                            <input class="span12" type="number" placeholder="Minimum Payment" title="Minimum Payment" ng-model="loan.minPayment">
-                        </div>
+                    <div class="input-prepend">
+                        <span class="add-on">$</span>
+                        <input class="input-small" type="number" placeholder="Debt Amount" title="Debt Amount" ng-model="loan.principal">
                     </div>
-                </form>
+
+                    <div class="input-prepend input-append">
+                        <span class="add-on">@</span>
+                        <input class="input-small" type="number" placeholder="Interest Rate" title="Interest Rate" ng-model="loan.rate">
+                        <span class="add-on">%</span>
+                    </div>
+
+                    with
+
+                    <div class="input-prepend">
+                        <span class="add-on">$</span>
+                        <input class="input-small" type="number" placeholder="Minimum Payment" title="Minimum Payment" ng-model="loan.minPayment">
+                    </div>
+
+                    minimum payment.
+                </div>
             </div>
 
             <div class="row-fluid">
