@@ -1,5 +1,6 @@
 require.config({
     paths: {
+        angular: '../components/angular/angular',
         jquery: '../components/jquery/jquery',
         bootstrap: 'vendor/bootstrap'
     },
@@ -11,7 +12,7 @@ require.config({
     }
 });
 
-require(['jquery', 'bootstrap', 'snowball'], function ($) {
+require(['jquery', 'angular', 'bootstrap', 'snowball'], function ($) {
     'use strict';
 
     var snow = new Snowball();

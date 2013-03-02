@@ -2,6 +2,7 @@
   "name": "yeti-boot",
   "version": "0.0.0",
   "dependencies": {
+    "angular": "~1.0.5",
     "sass-bootstrap": "~2.3.0",
     "requirejs": "~2.1.4",
     "modernizr": "~2.6.2",
