@@ -12,6 +12,6 @@ require.config({
     }
 });
 
-require(['jquery', 'angular', 'bootstrap', 'snowball', 'controller/Snowball'], function ($) {
+require(['jquery', 'angular', 'bootstrap', 'snowball', 'i18n/locale_en-us', 'controller/Snowball'], function ($) {
     'use strict';
 });
